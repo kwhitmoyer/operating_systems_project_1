@@ -6,7 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h> 
 
-#define BUFFER_SIZE 5 
+
+const int BUFFER_SIZE = 5; 
 
 struct shared_memory_buffer {
     sem_t head_semaphore;
@@ -15,5 +16,6 @@ struct shared_memory_buffer {
     size_t count; 
     char buffer[BUFFER_SIZE];
 };
+
 
 #endif
