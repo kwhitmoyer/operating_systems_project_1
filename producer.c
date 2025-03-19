@@ -58,11 +58,9 @@ int main() {
     
     for(int i = 0; i < BUFFER_SIZE; ++i){
 
-        //make empty semaphore wait 
         sem_wait(&shared_memory->empty_semaphore); 
         sem_wait(&shared_memory-> mutex_semaphore);
 
-        //create random value
         int value = rand() % 10 + 1;
         shared_memory->buffer[shared_memory->tail] = value; 
 
@@ -70,8 +68,6 @@ int main() {
 
         sem_post(&shared_memory->mutex_semaphore); 
         sem_post(&shared_memory->full_semaphore);
-
-
     }
 
 }
