@@ -9,7 +9,7 @@ int main() {
     shared_memory = (struct shared_memory_buffer*) mmap(NULL, sizeof(*shared_memory), PROT_READ | PROT_WRITE, MAP_SHARED, shared_memory_file, 0);      
     if (shared_memory == MAP_FAILED) printf("The memory map failed to be created.\n"); 
 
-    printf("The shared memory has been accessed successfully.\n"); 
+    printf("Consumer is consuming values from the buffer.\n");
 
     for(int i = 0; i < BUFFER_SIZE; ++i){
         sem_wait(&shared_memory->full_semaphore); 
@@ -23,5 +23,7 @@ int main() {
         sem_post(&shared_memory->mutex_semaphore); 
         sem_post(&shared_memory->empty_semaphore);
     }
+
+    printf("Consumer has finished consuming values from the buffer.\n\n");
 
 }

@@ -16,9 +16,6 @@ int main() {
     if (shared_memory == MAP_FAILED){ printf("The memory map failed to be created.");}
 
 
-    printf("The shared memory has been created.\n"); 
-
-
     int full_semaphore = sem_init(&shared_memory->full_semaphore, 1, 0);  
     if (full_semaphore == -1) printf("The head semaphore failed to be initialized.\n");
     
@@ -28,9 +25,9 @@ int main() {
     int mutex_semaphore = sem_init(&shared_memory->mutex_semaphore, 1, 1);
     if(mutex_semaphore == -1) printf("The mutex semaphore failed to be initialized.\n");
 
-    printf("The semaphores have initalized.\n");
-
     srand(time(NULL));
+
+    printf("Producer is writing values to the buffer.\n");
     
     for(int i = 0; i < BUFFER_SIZE; ++i){
         sem_wait(&shared_memory->empty_semaphore); 
@@ -45,6 +42,8 @@ int main() {
         sem_post(&shared_memory->mutex_semaphore); 
         sem_post(&shared_memory->full_semaphore);
     }
+
+    printf("Producer has finished writing values to the buffer.\n\n");
 
 }
 
