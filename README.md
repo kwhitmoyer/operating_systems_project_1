@@ -1,5 +1,5 @@
 This repo contains the implementation of the producer consumer model, 
-implemented via the POSIX library. It is a class assignment writte for CS 33211. 
+implemented via the POSIX library. It is a class assignment written for CS 33211. 
 
 ### Within This Implementation
 - A producer creates a shared buffer
