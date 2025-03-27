@@ -1,10 +1,24 @@
+This repo contains the implementation of the producer consumer model, 
+implemented via the POSIX library. It is a class assignment writte for CS 33211. 
 
+### Within This Implementation
+- A producer creates a shared buffer
+- The producer produces integers and writes them to the shared buffer
+- The consumer accesses the shared buffer
+- The consumer file consumes integers from the shared buffer
 
+## Mutual Exclusion 
+Mutual exclusion is enforced via the use of a mutex semaphore. The insertion of each integer is treated as the process entering the critical section. 
+When the process is trying to enter the critical section, sem_wait(&shared_memory-> mutex_semaphore) decrements the mutex. If the semaphore's value is
+greater then zero, the function will return immediately. If the semaphore has the value 0, the sem_wait call is blocked until the semaphore value is greater than zero. 
+For more information on the sem_wait() call as implemented in the POSIX library, click [here](https://man7.org/linux/man-pages/man3/sem_wait.3.html)
 
-
+After the process exits the critical section, sem_post(&shared_memory-> mutex_semaphore) increments the mutex semaphore value to 1. This indicates 
+that the process has exited the critical section. If other processes are waiting to enter the critical section, they will become unblocked after the 
+mutex is For more information on the sem_post() call as implemented in the POSIX library, click [here](https://man7.org/linux/man-pages/man3/sem_post.3.html)
 
 ## Example Usage
-This implementation of the producer consumer model can be run by three commands 
+This implementation of the producer consumer model can be run by three commands.
 
 ### Execution and Commands 
 ```
@@ -33,7 +47,7 @@ This implementation depends on the creation of a new memory buffer. If a user ru
 ### Example of Failed Execution 
 ![Failed Output](images/failed_output.png)
 
-### Fix
+### How To Fix This Issue?
 The correct way to fix this issue is to remove current executable files by the rm command.
 ```
 rm producer consumer
