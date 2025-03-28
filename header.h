@@ -1,3 +1,7 @@
+//CS 33211
+//Katherine Whitmoyer
+//Project 1: Producer-Consumer Problem
+
 #ifndef PRODUCER_CONSUMER
 #define PRODUCER_CONSUMER 
 
@@ -13,6 +17,7 @@
 
 const char* shared_file_name = "/project_1_shared_memory";
 
+//structure for shared memory buffer
 struct shared_memory_buffer {
     sem_t full_semaphore;
     sem_t empty_semaphore;
