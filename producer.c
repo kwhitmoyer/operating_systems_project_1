@@ -1,3 +1,7 @@
+//CS 33211
+//Katherine Whitmoyer
+//Project 1: Producer-Consumer Problem
+
 #include "header.h"
 
 int main() {
